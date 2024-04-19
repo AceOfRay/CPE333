@@ -33,7 +33,13 @@ module OTTER_MCU(
     logic staticPCWrite = 1'b1;
     logic staticRDEN = 1'b1;
 
-    struct packed {
+    logic [31:0] alu_inA;
+    logic [31:0] alu_inB;
+    logic [31:0] pc_bus_in;
+    logic [31:0] pc_bus_out;
+
+
+    typedef struct packed {
         // control in
         logic [1:0] pcSource;
 
@@ -44,9 +50,9 @@ module OTTER_MCU(
         logic[31:0] instr;
 
 
-    } ft_dc;
+    } fetch_decode;
 
-    struct packed {
+    typedef struct packed {
         // control in
 
         // data in_out
@@ -76,9 +82,9 @@ module OTTER_MCU(
         logic memRden2;
         logic[1:0] pcSource;
 
-    } dc_ex;
+    } decode_execute;
 
-    struct packed {
+    typedef struct packed {
         // control in
         logic[1:0] rf_wr_sel;
         logic regWrite;
@@ -104,9 +110,9 @@ module OTTER_MCU(
         logic[1:0] pcSource;
 
 
-    } ex_mem;
+    } execute_memory;
 
-    struct packed {
+    typedef struct packed {
         //data in
         
         logic[31:0] d_out2;
@@ -118,13 +124,12 @@ module OTTER_MCU(
         // control in
         logic[1:0] rf_wr_sel;
         logic regWrite;
-    } wb;
+    } writeback;
 
-    ft_dc ft_dc;
-    dc_ex dc_ex;
-    ex_mem ex_mem;
-    wb wb;
-
+    fetch_decode ft_dc;
+    decode_execute dc_ex;
+    execute_memory ex_mem;
+    writeback wb;
 
     always_ff @(posedge CLK) begin
         
@@ -177,10 +182,10 @@ module OTTER_MCU(
         .IO_IN(IOBUS_IN),
         .IO_WR(IOBUS_WR),
 
-        // stage 1 ft_dec
+        // stage 1 ft_dc
         .MEM_RDEN1(staticRDEN),
-        .MEM_ADDR1(ft_dec.pcOut[15:2]),
-        .MEM_DOUT1(ft_dec.instr),
+        .MEM_ADDR1(ft_dc.pcOut[15:2]),
+        .MEM_DOUT1(ft_dc.instr),
 
         // stage 4 ex_mem
         .MEM_RDEN2(ex_mem.memRden2),
@@ -195,9 +200,9 @@ module OTTER_MCU(
     PC ProgramCounter (
         .PC_WRITE(staticPCWrite),
         .PC_RST  (RST),
-        .PC_COUNT(ft_dc.pcOut),
+        .PC_COUNT(pc_bus_out),
         .CLK     (CLK),
-        .PC_DIN  (ft_dc.pcIn)
+        .PC_DIN  (pc_bus_in)
     );
 
     mux_2bit_sel pc_mux (
@@ -206,12 +211,11 @@ module OTTER_MCU(
         .C  (ex_mem.branch),
         .D  (ex_mem.jal),
         .O  (ft_dc.pcIn),
-        .sel(ex_mem.pcSource),
+        .sel(ex_mem.pcSource)
     );
 
 //----------------------------PHASE 2--------------------------------------------
 
-    
     RF reg_file (
         .RF_ADR1(ft_dc.instr[19:15]),
         .RF_ADR2(ft_dc.instr[24:20]),
@@ -220,8 +224,8 @@ module OTTER_MCU(
         .RF_EN(wb.regWrite),
         .CLK(CLK),
         .RF_RS1(dc_ex.r_out1),
-        .RF_RS2(dc_ex.r_out2),
-    ); 
+        .RF_RS2(dc_ex.r_out2)
+    );
 
     CU_DCDR dcdr (
         .opcode(ft_dc.instr[6:0]),
@@ -245,4 +249,60 @@ module OTTER_MCU(
 
 //----------------------------PHASE 3--------------------------------------------
 
+    BRANCH_COND_GEN branch_cd (
+        .RS1(dc_ex.r_out1),
+        .RS2(dc_ex.r_out2),
+        .instr(dc_ex.instr),
+        .pcSource(ex_mem.pcSource)
+    );
+
+    BRANCH_ADDR_GEN branch_ad (
+        .J_TYPE(dc_ex.J),
+        .B_TYPE(dc_ex.B),
+        .I_TYPE(dc_ex.I),
+        .PC(dc_ex.pcOut),
+        .RS1(dc_ex.r_out1),
+        .JAL(ex_mem.jal),
+        .BRANCH(ex_mem.branch),
+        .JALR(ex_mem.jalr)
+    );
+
+    mux_2bit_sel alu_srcA_mux (
+        .A (dc_ex.r_out1),
+        .B (dc_ex.U),
+        .C (),
+        .D (),
+        .sel(dc_ex.alu_srcA),
+        .O (alu_inA)
+    );
+
+    mux_2bit_sel alu_srcB_mux (
+        .A (dc_ex.r_out2),
+        .B (dc_ex.I),
+        .C (dc_ex.S),
+        .D (dc_ex.pcOut),
+        .sel(dc_ex.alu_srcB),
+        .O (alu_inB)
+    );
+
+    ALU ALU (
+        .srcA(alu_inA),
+        .srcB(alu_inB),
+        .ALU_FUN(dc_ex.alu_fun),
+        .RESULT(ex_mem.aluOut)
+    );
+
+//----------------------------PHASE 4--------------------------------------------
+
+//----------------------------PHASE 5------------------------------------
+
+    mux_2bit_sel reg_file_mux (
+        .A (wb.pcOut + 4),
+        .B (),
+        .C (wb.d_out2),
+        .D (wb.aluOut),
+        .sel (wb.rf_wr_sel),
+        .O (wb.wd)
+    );
     
+    endmodule
