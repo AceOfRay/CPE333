@@ -1,0 +1,547 @@
+
+*** Running vivado
+    with args -log OTTER_MCU.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source OTTER_MCU.tcl
+
+
+
+****** Vivado v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source OTTER_MCU.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental {C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/PipelinedOtter/pipelined_otter.srcs/utils_1/imports/synth_1/OTTER_MCU.dcp}
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/PipelinedOtter/pipelined_otter.srcs/utils_1/imports/synth_1/OTTER_MCU.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top OTTER_MCU -part xc7a35ticpg236-1L
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35ti'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35ti'
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 9612
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [C:/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+INFO: [Synth 8-11241] undeclared symbol 'branchwire', assumed default net type 'wire' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:334]
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 835.980 ; gain = 411.125
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'OTTER_MCU' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'Memory' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/otter_memory_v1_07.sv:48]
+INFO: [Synth 8-3876] $readmem data file 'noHazardPipelineOtter.mem' is read successfully [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/otter_memory_v1_07.sv:73]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/otter_memory_v1_07.sv:95]
+INFO: [Synth 8-6155] done synthesizing module 'Memory' (0#1) [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/otter_memory_v1_07.sv:48]
+INFO: [Synth 8-6157] synthesizing module 'PC' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/PC.sv:19]
+INFO: [Synth 8-6155] done synthesizing module 'PC' (0#1) [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/PC.sv:19]
+INFO: [Synth 8-6157] synthesizing module 'mux_2bit_sel' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/mux_2bit_sel.sv:23]
+INFO: [Synth 8-226] default block is never used [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/mux_2bit_sel.sv:33]
+INFO: [Synth 8-6155] done synthesizing module 'mux_2bit_sel' (0#1) [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/mux_2bit_sel.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'RF' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/RF.sv:18]
+INFO: [Synth 8-6155] done synthesizing module 'RF' (0#1) [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/RF.sv:18]
+INFO: [Synth 8-6157] synthesizing module 'CU_DCDR' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/CU_DCDR.sv:21]
+INFO: [Synth 8-6155] done synthesizing module 'CU_DCDR' (0#1) [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/CU_DCDR.sv:21]
+WARNING: [Synth 8-7071] port 'mret_exec' of module 'CU_DCDR' is unconnected for instance 'dcdr' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:293]
+WARNING: [Synth 8-7023] instance 'dcdr' of module 'CU_DCDR' has 13 connections declared, but only 12 given [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:293]
+INFO: [Synth 8-6157] synthesizing module 'IMMED_GEN' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/IMMED_GEN.sv:19]
+INFO: [Synth 8-6155] done synthesizing module 'IMMED_GEN' (0#1) [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/IMMED_GEN.sv:19]
+INFO: [Synth 8-6157] synthesizing module 'BRANCH_COND_GEN' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/BRANCH_COND_GEN.sv:19]
+INFO: [Synth 8-6155] done synthesizing module 'BRANCH_COND_GEN' (0#1) [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/BRANCH_COND_GEN.sv:19]
+INFO: [Synth 8-6157] synthesizing module 'BRANCH_ADDR_GEN' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/BRANCH_ADDR_GEN.sv:19]
+INFO: [Synth 8-6155] done synthesizing module 'BRANCH_ADDR_GEN' (0#1) [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/BRANCH_ADDR_GEN.sv:19]
+WARNING: [Synth 8-689] width (1) of port connection 'BRANCH' does not match port width (32) of module 'BRANCH_ADDR_GEN' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:334]
+INFO: [Synth 8-6157] synthesizing module 'ALU' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+INFO: [Synth 8-6155] done synthesizing module 'ALU' (0#1) [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+INFO: [Synth 8-6155] done synthesizing module 'OTTER_MCU' (0#1) [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:23]
+WARNING: [Synth 8-3848] Net csr_WE in module/entity CU_DCDR does not have driver. [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/CU_DCDR.sv:32]
+WARNING: [Synth 8-3848] Net mret_exec in module/entity CU_DCDR does not have driver. [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/CU_DCDR.sv:33]
+WARNING: [Synth 8-6014] Unused sequential element dc_ex_reg[aluOut] was removed.  [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:189]
+WARNING: [Synth 8-6014] Unused sequential element dc_ex_reg[memRden1] was removed.  [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:189]
+WARNING: [Synth 8-6014] Unused sequential element dc_ex_reg[pcSource] was removed.  [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:189]
+WARNING: [Synth 8-6014] Unused sequential element ex_mem_reg[memRden1] was removed.  [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element ex_mem_reg[instr] was removed.  [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element ex_mem_reg[jal] was removed.  [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element ex_mem_reg[jalr] was removed.  [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element ex_mem_reg[branch] was removed.  [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element ex_mem_reg[d_out2] was removed.  [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element ex_mem_reg[pcOut] was removed.  [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element ex_mem_reg[alu_fun] was removed.  [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element ex_mem_reg[pcSource] was removed.  [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element wb_reg[instr] was removed.  [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:191]
+WARNING: [Synth 8-6014] Unused sequential element wb_reg[pcOut] was removed.  [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:191]
+WARNING: [Synth 8-6014] Unused sequential element wb_reg[wd] was removed.  [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:191]
+WARNING: [Synth 8-3848] Net rf_wr_sel_wire in module/entity OTTER_MCU does not have driver. [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:62]
+WARNING: [Synth 8-3848] Net alu_srcA_sel in module/entity OTTER_MCU does not have driver. [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:59]
+WARNING: [Synth 8-3848] Net alu_srcB_sel in module/entity OTTER_MCU does not have driver. [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:60]
+WARNING: [Synth 8-3848] Net branchWire in module/entity OTTER_MCU does not have driver. [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:49]
+WARNING: [Synth 8-3848] Net jalWire in module/entity OTTER_MCU does not have driver. [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:50]
+WARNING: [Synth 8-7129] Port instr[31] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[30] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[29] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[28] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[27] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[26] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[25] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[24] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[23] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[22] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[21] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[20] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[19] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[18] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[17] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[16] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[15] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[11] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[10] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[9] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[8] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[7] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port csr_WE in module CU_DCDR is either unconnected or has no load
+WARNING: [Synth 8-7129] Port mret_exec in module CU_DCDR is either unconnected or has no load
+WARNING: [Synth 8-7129] Port INTR in module OTTER_MCU is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 941.797 ; gain = 516.941
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 941.797 ; gain = 516.941
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35ticpg236-1L
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 941.797 ; gain = 516.941
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7a35ticpg236-1L
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "Memory:/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "Memory:/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "Memory:/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "Memory:/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "Memory:/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "Memory:/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "Memory:/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "Memory:/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "Memory:/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "Memory:/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "Memory:/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "Memory:/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "Memory:/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "Memory:/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "Memory:/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "Memory:/memory_reg"
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 941.797 ; gain = 516.941
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 5     
+	   3 Input   32 Bit       Adders := 1     
++---XORs : 
+	   2 Input     32 Bit         XORs := 1     
+	   2 Input      1 Bit         XORs := 3     
++---Registers : 
+	               32 Bit    Registers := 24    
+	                5 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                2 Bit    Registers := 6     
+	                1 Bit    Registers := 10    
++---RAMs : 
+	             512K Bit	(16384 X 32 bit)          RAMs := 1     
++---Muxes : 
+	   9 Input   32 Bit        Muxes := 2     
+	  16 Input   32 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 3     
+	   4 Input   32 Bit        Muxes := 4     
+	   2 Input    4 Bit        Muxes := 1     
+	   9 Input    4 Bit        Muxes := 1     
+	   9 Input    2 Bit        Muxes := 2     
+	   2 Input    2 Bit        Muxes := 2     
+	   4 Input    2 Bit        Muxes := 2     
+	   9 Input    1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port instr[31] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[30] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[29] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[28] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[27] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[26] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[25] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[24] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[23] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[22] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[21] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[20] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[19] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[18] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[17] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[16] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[15] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[11] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[10] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[9] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[8] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instr[7] in module BRANCH_COND_GEN is either unconnected or has no load
+WARNING: [Synth 8-7129] Port INTR in module OTTER_MCU is either unconnected or has no load
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "OTTER_MCU/Memory/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "OTTER_MCU/Memory/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "OTTER_MCU/Memory/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "OTTER_MCU/Memory/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "OTTER_MCU/Memory/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "OTTER_MCU/Memory/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "OTTER_MCU/Memory/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "OTTER_MCU/Memory/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "OTTER_MCU/Memory/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "OTTER_MCU/Memory/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "OTTER_MCU/Memory/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "OTTER_MCU/Memory/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "OTTER_MCU/Memory/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "OTTER_MCU/Memory/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "OTTER_MCU/Memory/memory_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 32 for RAM "OTTER_MCU/Memory/memory_reg"
+WARNING: [Synth 8-3332] Sequential element (i_0) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_2) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_4) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_6) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_8) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_10) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_12) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_14) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_16) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_18) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_20) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_22) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_24) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_26) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_28) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_30) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_32) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_34) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_36) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_38) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_40) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_42) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_44) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_46) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_48) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_50) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_52) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_54) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_56) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_58) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_60) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_62) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (i_64) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (Memory/memory_reg_mux_sel_a_pos_3) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (Memory/memory_reg_mux_sel_a_pos_2) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (Memory/memory_reg_mux_sel_a_pos_1) is unused and will be removed from module OTTER_MCU.
+WARNING: [Synth 8-3332] Sequential element (Memory/memory_reg_mux_sel_a_pos_0) is unused and will be removed from module OTTER_MCU.
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'ex_mem_reg[rf_wr_sel][1]/Q' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:86]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:86]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:86]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'ex_mem_reg[rf_wr_sel][0]/Q' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:86]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:86]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:86]
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1145.410 ; gain = 720.555
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping Report (see note below)
++------------+-------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object        | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+-------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|OTTER_MCU   | Memory/memory_reg | 16 K x 32(READ_FIRST)  | W | R | 16 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 16     | 
++------------+-------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++------------+------------------+-----------+----------------------+--------------+
+|Module Name | RTL Object       | Inference | Size (Depth x Width) | Primitives   | 
++------------+------------------+-----------+----------------------+--------------+
+|OTTER_MCU   | reg_file/ram_reg | Implied   | 32 x 32              | RAM32M x 12  | 
++------------+------------------+-----------+----------------------+--------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1145.410 ; gain = 720.555
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++------------+-------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object        | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+-------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|OTTER_MCU   | Memory/memory_reg | 16 K x 32(READ_FIRST)  | W | R | 16 K x 32(WRITE_FIRST) |   | R | Port A and B     | 0      | 16     | 
++------------+-------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+
+Distributed RAM: Final Mapping Report
++------------+------------------+-----------+----------------------+--------------+
+|Module Name | RTL Object       | Inference | Size (Depth x Width) | Primitives   | 
++------------+------------------+-----------+----------------------+--------------+
+|OTTER_MCU   | reg_file/ram_reg | Implied   | 32 x 32              | RAM32M x 12  | 
++------------+------------------+-----------+----------------------+--------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance Memory/memory_reg_bram_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Memory/memory_reg_bram_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Memory/memory_reg_bram_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Memory/memory_reg_bram_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Memory/memory_reg_bram_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Memory/memory_reg_bram_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Memory/memory_reg_bram_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Memory/memory_reg_bram_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Memory/memory_reg_bram_8 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Memory/memory_reg_bram_9 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Memory/memory_reg_bram_10 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Memory/memory_reg_bram_11 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Memory/memory_reg_bram_12 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Memory/memory_reg_bram_13 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Memory/memory_reg_bram_14 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Memory/memory_reg_bram_15 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1145.414 ; gain = 720.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1145.414 ; gain = 720.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1145.414 ; gain = 720.559
+---------------------------------------------------------------------------------
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin dc_ex_reg[pcOut_n_0_][0] with 1st driver pin 'dc_ex_reg[pcOut][0]/Q' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/CU_DCDR.sv:48]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin dc_ex_reg[pcOut_n_0_][0] with 2nd driver pin 'branch_ad/JALR_carry/O[0]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[1] with 1st driver pin 'branch_ad/JALR_carry/O[1]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[1] with 2nd driver pin 'branch_ad/JAL_carry/O[0]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[2] with 1st driver pin 'branch_ad/JALR_carry/O[2]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[2] with 2nd driver pin 'branch_ad/JAL_carry/O[1]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[3] with 1st driver pin 'branch_ad/JALR_carry/O[3]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[3] with 2nd driver pin 'branch_ad/JAL_carry/O[2]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[4] with 1st driver pin 'branch_ad/JALR_carry__0/O[0]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[4] with 2nd driver pin 'branch_ad/JAL_carry/O[3]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[5] with 1st driver pin 'branch_ad/JALR_carry__0/O[1]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[5] with 2nd driver pin 'branch_ad/JAL_carry__0/O[0]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[6] with 1st driver pin 'branch_ad/JALR_carry__0/O[2]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[6] with 2nd driver pin 'branch_ad/JAL_carry__0/O[1]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[7] with 1st driver pin 'branch_ad/JALR_carry__0/O[3]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[7] with 2nd driver pin 'branch_ad/JAL_carry__0/O[2]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[8] with 1st driver pin 'branch_ad/JALR_carry__1/O[0]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[8] with 2nd driver pin 'branch_ad/JAL_carry__0/O[3]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[9] with 1st driver pin 'branch_ad/JALR_carry__1/O[1]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[9] with 2nd driver pin 'branch_ad/JAL_carry__1/O[0]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[10] with 1st driver pin 'branch_ad/JALR_carry__1/O[2]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[10] with 2nd driver pin 'branch_ad/JAL_carry__1/O[1]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[11] with 1st driver pin 'branch_ad/JALR_carry__1/O[3]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[11] with 2nd driver pin 'branch_ad/JAL_carry__1/O[2]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[12] with 1st driver pin 'branch_ad/JALR_carry__2/O[0]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[12] with 2nd driver pin 'branch_ad/JAL_carry__1/O[3]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[13] with 1st driver pin 'branch_ad/JALR_carry__2/O[1]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[13] with 2nd driver pin 'branch_ad/JAL_carry__2/O[0]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[14] with 1st driver pin 'branch_ad/JALR_carry__2/O[2]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[14] with 2nd driver pin 'branch_ad/JAL_carry__2/O[1]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[15] with 1st driver pin 'branch_ad/JALR_carry__2/O[3]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[15] with 2nd driver pin 'branch_ad/JAL_carry__2/O[2]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[16] with 1st driver pin 'branch_ad/JALR_carry__3/O[0]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[16] with 2nd driver pin 'branch_ad/JAL_carry__2/O[3]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[17] with 1st driver pin 'branch_ad/JALR_carry__3/O[1]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[17] with 2nd driver pin 'branch_ad/JAL_carry__3/O[0]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[18] with 1st driver pin 'branch_ad/JALR_carry__3/O[2]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[18] with 2nd driver pin 'branch_ad/JAL_carry__3/O[1]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[19] with 1st driver pin 'branch_ad/JALR_carry__3/O[3]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[19] with 2nd driver pin 'branch_ad/JAL_carry__3/O[2]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[20] with 1st driver pin 'branch_ad/JALR_carry__4/O[0]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[20] with 2nd driver pin 'branch_ad/JAL_carry__3/O[3]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[21] with 1st driver pin 'branch_ad/JALR_carry__4/O[1]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[21] with 2nd driver pin 'branch_ad/JAL_carry__4/O[0]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[22] with 1st driver pin 'branch_ad/JALR_carry__4/O[2]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[22] with 2nd driver pin 'branch_ad/JAL_carry__4/O[1]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[23] with 1st driver pin 'branch_ad/JALR_carry__4/O[3]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[23] with 2nd driver pin 'branch_ad/JAL_carry__4/O[2]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[24] with 1st driver pin 'branch_ad/JALR_carry__5/O[0]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[24] with 2nd driver pin 'branch_ad/JAL_carry__4/O[3]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[25] with 1st driver pin 'branch_ad/JALR_carry__5/O[1]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[25] with 2nd driver pin 'branch_ad/JAL_carry__5/O[0]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[26] with 1st driver pin 'branch_ad/JALR_carry__5/O[2]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[26] with 2nd driver pin 'branch_ad/JAL_carry__5/O[1]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[27] with 1st driver pin 'branch_ad/JALR_carry__5/O[3]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[27] with 2nd driver pin 'branch_ad/JAL_carry__5/O[2]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[28] with 1st driver pin 'branch_ad/JALR_carry__6/O[0]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[28] with 2nd driver pin 'branch_ad/JAL_carry__5/O[3]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[29] with 1st driver pin 'branch_ad/JALR_carry__6/O[1]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[29] with 2nd driver pin 'branch_ad/JAL_carry__6/O[0]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[30] with 1st driver pin 'branch_ad/JALR_carry__6/O[2]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[30] with 2nd driver pin 'branch_ad/JAL_carry__6/O[1]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[31] with 1st driver pin 'branch_ad/JALR_carry__6/O[3]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin jalrWire[31] with 2nd driver pin 'branch_ad/JAL_carry__6/O[2]' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/ALU.sv:19]
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|       32|Failed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1145.414 ; gain = 720.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1145.414 ; gain = 720.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1145.414 ; gain = 720.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1145.414 ; gain = 720.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Static Shift Register Report:
++------------+--------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|Module Name | RTL Name           | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
++------------+--------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|OTTER_MCU   | wb_reg[rd_addr][4] | 4      | 36    | YES          | NO                 | YES               | 36     | 0       | 
++------------+--------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |BUFG     |     1|
+|2     |CARRY4   |    59|
+|3     |LUT1     |     1|
+|4     |LUT2     |   182|
+|5     |LUT3     |    62|
+|6     |LUT4     |   209|
+|7     |LUT5     |   168|
+|8     |LUT6     |   462|
+|9     |MUXF7    |    68|
+|10    |MUXF8    |    32|
+|11    |RAM32M   |    10|
+|12    |RAM32X1D |     4|
+|13    |RAMB36E1 |    16|
+|14    |SRL16E   |    36|
+|15    |FDRE     |   370|
+|16    |IBUF     |     2|
+|17    |OBUF     |    65|
++------+---------+------+
+
+Report Instance Areas: 
++------+-----------------+----------------+------+
+|      |Instance         |Module          |Cells |
++------+-----------------+----------------+------+
+|1     |top              |                |  1747|
+|2     |  Memory         |Memory          |   356|
+|3     |  ALU            |ALU             |   190|
+|4     |  ProgramCounter |PC              |   136|
+|5     |  branch_ad      |BRANCH_ADDR_GEN |    79|
+|6     |  branch_cd      |BRANCH_COND_GEN |    48|
+|7     |  reg_file       |RF              |    78|
++------+-----------------+----------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1145.414 ; gain = 720.559
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 70 critical warnings and 111 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1145.414 ; gain = 720.559
+Synthesis Optimization Complete : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1145.414 ; gain = 720.559
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.020 . Memory (MB): peak = 1157.293 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 189 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1224.668 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 14 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 10 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 4 instances
+
+Synth Design complete, checksum: 8d4cebce
+INFO: [Common 17-83] Releasing license: Synthesis
+89 Infos, 111 Warnings, 70 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1224.668 ; gain = 805.914
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/PipelinedOtter/pipelined_otter.runs/synth_1/OTTER_MCU.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file OTTER_MCU_utilization_synth.rpt -pb OTTER_MCU_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun Apr 21 16:44:04 2024...

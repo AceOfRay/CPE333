@@ -3,7 +3,7 @@
 // Company: Cal Poly
 // Engineer: Ray Valenzuela
 // 
-// Create Date: 10/28/2023 10:49:26 AM
+// Create Date: 
 // Design Name: OTTER MCU
 // Module Name: OTTER_MCU
 // Project Name: 
@@ -30,23 +30,69 @@ module OTTER_MCU(
     output [31:0] IOBUS_ADDR
     );
 
+    // fetch_decode wires
+
     logic staticPCWrite = 1'b1;
     logic staticRDEN = 1'b1;
 
     logic [31:0] alu_inA;
     logic [31:0] alu_inB;
-    logic [31:0] pc_bus_in;
-    logic [31:0] pc_bus_out;
 
+    logic [1:0] pcSource;
+
+    logic [31:0] pcIn;
+    logic [31:0] pcOutWire;
+    logic [31:0] nextPcOutWire;
+    logic [31:0] instrWire;
+
+    logic [31:0] jalrWire;
+    logic [31:0] branchWire;
+    logic [31:0] jalWire;
+
+    assign nextPcOutWire = pcOutWire + 4;
+
+    // decode_execute wires
+
+    logic [31:0] r_out1_wire;
+    logic [31:0] r_out2_wire;
+
+    logic [1:0] alu_srcA_sel;
+    logic [2:0] alu_srcB_sel;
+    logic [3:0] alu_fun_wire;
+    logic [1:0] rf_wr_sel_wire;
+
+    logic [31:0] b_wire;
+    logic [31:0] u_wire;
+    logic [31:0] j_wire;
+    logic [31:0] i_wire;
+    logic [31:0] s_wire;
+
+    logic memRd1_wire;
+
+    logic memRd2_wire;
+    logic regWrite_wire;
+    logic memWrite_wire;
+    
+    // execute_memory wires
+
+    logic [31:0] aluOut_wire;
+    logic [31:0] alu_srcA_data_wire;
+    logic [31:0] alu_srcB_data_wire;
+
+    // memory_writeback wires
+
+    logic [31:0] d_out2_wire;
+
+    assign IOBUS_OUT = ex_mem.r_out2;
+    assign IOBUS_ADDR = ex_mem.aluOut;
+
+    logic[31:0] rf_wd_w;
 
     typedef struct packed {
-        // control in
-        logic [1:0] pcSource;
-
-        logic[31:0] pcIn;
 
         // data out
         logic[31:0] pcOut;
+        logic[31:0] nextPcOut;
         logic[31:0] instr;
 
 
@@ -58,6 +104,7 @@ module OTTER_MCU(
         // data in_out
         logic[31:0] instr;
         logic[31:0] pcOut;
+        logic[31:0] nextPcOut;
 
         // data out
         logic[31:0] r_out1;
@@ -91,10 +138,13 @@ module OTTER_MCU(
         logic memWe2;
         logic memRden2;
         logic memRden1;
+        logic [1:0] memSize;
+        logic memSign;
+        logic [31:0] nextPcOut;
 
         // data in_out
         logic[31:0] instr;
-        logic[31:0] r_out1;
+        //logic[31:0] r_out1;
         logic[31:0] r_out2;
         logic[31:0] aluOut;
         logic[31:0] jal;
@@ -102,6 +152,7 @@ module OTTER_MCU(
         logic[31:0] branch;
         logic[31:0] d_out2;
         logic[31:0] pcOut;
+        logic[31:0] rd_addr;
 
         //control out
         logic [3:0] alu_fun;
@@ -109,21 +160,22 @@ module OTTER_MCU(
         logic [1:0] alu_srcB;
         logic[1:0] pcSource;
 
-
     } execute_memory;
 
     typedef struct packed {
         //data in
-        
         logic[31:0] d_out2;
         logic[31:0] instr;
         logic[31:0] pcOut; // + 4
+        logic[31:0] nextPcOut;
         logic[31:0] aluOut;
+        logic[4:0] rd_addr;
 
         logic[31:0] wd;
         // control in
         logic[1:0] rf_wr_sel;
         logic regWrite;
+
     } writeback;
 
     fetch_decode ft_dc;
@@ -132,46 +184,57 @@ module OTTER_MCU(
     writeback wb;
 
     always_ff @(posedge CLK) begin
-        
-        //---------------------------------------------------------------------------------
-        // ft_dc to dc_ex
+        if (RST) begin
+            ft_dc <= 0;
+            dc_ex <= 0;
+            ex_mem <= 0;
+            wb <= 0;
+        end
+        else begin
+            // ft_dec
+            ft_dc.pcOut <= pcOutWire;
+            ft_dc.nextPcOut <= nextPcOutWire;
+            ft_dc.instr <= instrWire;
 
-        ft_dc.pcOut <= dc_ex.pcOut;
-        ft_dc.instr <= dc_ex.instr;
+            // dc_ex
+            dc_ex.pcOut <= ft_dc.pcOut;
+            dc_ex.nextPcOut <= ft_dc.nextPcOut;
+            dc_ex.instr <= ft_dc.instr;
+            dc_ex.regWrite <= regWrite_wire;
+            dc_ex.memWe2 <= memWrite_wire;
+            dc_ex.memRden2 <= memRd2_wire;
+            dc_ex.alu_fun <= alu_fun_wire;
+            dc_ex.alu_srcA <= alu_srcA_sel;
+            dc_ex.alu_srcB <= alu_srcB_sel;
+            dc_ex.rf_wr_sel <= rf_wr_sel_wire;
+            dc_ex.r_out1 <= r_out1_wire;
+            dc_ex.r_out2 <= r_out2_wire;
+            dc_ex.U <= u_wire;
+            dc_ex.S <= s_wire;
+            dc_ex.J <= j_wire;
+            dc_ex.I <= i_wire;
+            dc_ex.B <= b_wire;
 
-        //---------------------------------------------------------------------------------
+            // ex_mem
+            ex_mem.nextPcOut <= dc_ex.nextPcOut;
+            ex_mem.memSize <= dc_ex.instr[13:12];
+            ex_mem.memSign <= dc_ex.instr[14];
+            ex_mem.regWrite <= dc_ex.regWrite;
+            ex_mem.memWe2 <= dc_ex.memWe2;
+            ex_mem.memRden2 <= dc_ex.memRden2;
+            ex_mem.rf_wr_sel <= dc_ex.rf_wr_sel;
+            ex_mem.rd_addr <= dc_ex.instr[11:7];
+            ex_mem.r_out2 <= dc_ex.r_out2;
+            ex_mem.aluOut <= aluOut_wire;
 
-        // dc_ex to ex_mem
-
-        // data signals
-        dc_ex.pcOut <= ex_mem.pcOut;
-        dc_ex.r_out2 <= ex_mem.r_out2;
-        dc_ex.r_out1 <= ex_mem.r_out1;
-        dc_ex.instr <= ex_mem.instr;
-        dc_ex.aluOut <= ex_mem.aluOut;
-
-        // control signals
-        dc_ex.alu_fun <= ex_mem.alu_fun;
-        dc_ex.alu_srcA <= ex_mem.alu_srcA;
-        dc_ex.alu_srcB <= ex_mem.alu_srcB;
-        dc_ex.regWrite <= ex_mem.regWrite;
-        dc_ex.rf_wr_sel <= ex_mem.rf_wr_sel;
-        dc_ex.memWe2 <= ex_mem.memWe2;
-        dc_ex.memRden1 <= ex_mem.memRden1;
-        dc_ex.memRden2 <= ex_mem.memRden2;
-
-        //---------------------------------------------------------------------------------
-        
-        // ex_mem to wb
-        ex_mem.rf_wr_sel <= wb.rf_wr_sel;
-        ex_mem.pcOut <= wb.pcOut;
-        ex_mem.instr <= wb.instr;
-        ex_mem.d_out2 <= wb.d_out2;
-        ex_mem.aluOut <= wb.aluOut;
-        ex_mem.regWrite <= wb.regWrite;
-
-        //---------------------------------------------------------------------------------
-
+            // mem_wb
+            wb.nextPcOut <= ex_mem.nextPcOut;
+            wb.regWrite <= ex_mem.regWrite;
+            wb.rf_wr_sel <= ex_mem.rf_wr_sel;
+            wb.d_out2 <= d_out2_wire;
+            wb.aluOut <= ex_mem.aluOut;
+            wb.rd_addr <= ex_mem.rd_addr;
+        end
     end
 
     // ---------------PHASE 1 ------------------------------------
@@ -184,34 +247,34 @@ module OTTER_MCU(
 
         // stage 1 ft_dc
         .MEM_RDEN1(staticRDEN),
-        .MEM_ADDR1(ft_dc.pcOut[15:2]),
-        .MEM_DOUT1(ft_dc.instr),
+        .MEM_ADDR1(pcOutWire[15:2]),
+        .MEM_DOUT1(instrWire),
 
         // stage 4 ex_mem
         .MEM_RDEN2(ex_mem.memRden2),
         .MEM_WE2(ex_mem.memWe2),
         .MEM_ADDR2(ex_mem.aluOut),
         .MEM_DIN2 (ex_mem.r_out2),
-        .MEM_SIZE(ex_mem.instr[13:12]),
-        .MEM_SIGN(ex_mem.instr[14]),
-        .MEM_DOUT2(wb.d_out2)
+        .MEM_SIZE(ex_mem.memSize),
+        .MEM_SIGN(ex_mem.memSign),
+        .MEM_DOUT2(d_out2_wire)
     );
 
     PC ProgramCounter (
         .PC_WRITE(staticPCWrite),
         .PC_RST  (RST),
-        .PC_COUNT(pc_bus_out),
+        .PC_COUNT(pcOutWire),
         .CLK     (CLK),
-        .PC_DIN  (pc_bus_in)
+        .PC_DIN  (pcIn)
     );
 
     mux_2bit_sel pc_mux (
-        .A  (ft_dc.pcOut + 4),
-        .B  (ex_mem.jalr),
-        .C  (ex_mem.branch),
-        .D  (ex_mem.jal),
-        .O  (ft_dc.pcIn),
-        .sel(ex_mem.pcSource)
+        .A  (nextPcOutWire),
+        .B  (jalrWire),
+        .C  (branchWire),
+        .D  (jalWire),
+        .O  (pcIn),
+        .sel(pcSource)
     );
 
 //----------------------------PHASE 2--------------------------------------------
@@ -219,32 +282,37 @@ module OTTER_MCU(
     RF reg_file (
         .RF_ADR1(ft_dc.instr[19:15]),
         .RF_ADR2(ft_dc.instr[24:20]),
-        .RF_WA(ft_dc.instr[11:7]),
-        .RF_WD(wb.wd),
+        .RF_WA(wb.rd_addr),
+        .RF_WD(rf_wd_w),
         .RF_EN(wb.regWrite),
         .CLK(CLK),
-        .RF_RS1(dc_ex.r_out1),
-        .RF_RS2(dc_ex.r_out2)
+        .RF_RS1(r_out1_wire),
+        .RF_RS2(r_out2_wire)
     );
 
     CU_DCDR dcdr (
         .opcode(ft_dc.instr[6:0]),
         .funct3(ft_dc.instr[14:12]),
         .funct7(ft_dc.instr[30]),
-        .alu_fun(ex_mem.alu_fun),
         .alu_srcA(ex_mem.alu_srcA),
         .alu_srcB(ex_mem.alu_srcB),
         //.pcSource(), // modify decoder and come back
-        .rf_wr_sel(ex_mem.rf_wr_sel)
+        .rf_wr_sel(ex_mem.rf_wr_sel),
+        .alu_fun (alu_fun_wire),
+        .memRead2 (memRd2_wire), // POINT OF BREAK POSSIBLY
+        .memWrite (memWrite_wire),
+        .regWrite (regWrite_wire),
+        .csr_WE (),
+        .memRead1 (memRd1_wire)
     );
 
     IMMED_GEN immed_gen (
         .INSTRUCT(ft_dc.instr[31:7]),
-        .U_TYPE  (dc_ex.U),
-        .I_TYPE  (dc_ex.I),
-        .S_TYPE  (dc_ex.S),
-        .J_TYPE  (dc_ex.J),
-        .B_TYPE  (dc_ex.B)
+        .U_TYPE  (u_wire),
+        .I_TYPE  (i_wire),
+        .S_TYPE  (s_wire),
+        .J_TYPE  (j_wire),
+        .B_TYPE  (b_wire)
     );
 
 //----------------------------PHASE 3--------------------------------------------
@@ -252,8 +320,8 @@ module OTTER_MCU(
     BRANCH_COND_GEN branch_cd (
         .RS1(dc_ex.r_out1),
         .RS2(dc_ex.r_out2),
-        .instr(dc_ex.instr),
-        .pcSource(ex_mem.pcSource)
+        .INSTR(dc_ex.instr),
+        .pcSource(pcSource)
     );
 
     BRANCH_ADDR_GEN branch_ad (
@@ -262,16 +330,16 @@ module OTTER_MCU(
         .I_TYPE(dc_ex.I),
         .PC(dc_ex.pcOut),
         .RS1(dc_ex.r_out1),
-        .JAL(ex_mem.jal),
-        .BRANCH(ex_mem.branch),
-        .JALR(ex_mem.jalr)
+        .JAL(jalWire),
+        .BRANCH(branchWire),
+        .JALR(jalrWire)
     );
 
     mux_2bit_sel alu_srcA_mux (
         .A (dc_ex.r_out1),
         .B (dc_ex.U),
-        .C (),
-        .D (),
+        .C (0),
+        .D (0),
         .sel(dc_ex.alu_srcA),
         .O (alu_inA)
     );
@@ -289,7 +357,7 @@ module OTTER_MCU(
         .srcA(alu_inA),
         .srcB(alu_inB),
         .ALU_FUN(dc_ex.alu_fun),
-        .RESULT(ex_mem.aluOut)
+        .RESULT(aluOut_wire)
     );
 
 //----------------------------PHASE 4--------------------------------------------
@@ -297,12 +365,12 @@ module OTTER_MCU(
 //----------------------------PHASE 5------------------------------------
 
     mux_2bit_sel reg_file_mux (
-        .A (wb.pcOut + 4),
-        .B (),
+        .A (wb.nextPcOut),
+        .B (0),
         .C (wb.d_out2),
         .D (wb.aluOut),
         .sel (wb.rf_wr_sel),
-        .O (wb.wd)
+        .O (rf_wd_w)
     );
     
     endmodule
