@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="793.860 ns"></ZoomStartTime>
-      <ZoomEndTime time="992.055 ns"></ZoomEndTime>
-      <Cursor1Time time="101,000.000 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="135.701 ns"></ZoomEndTime>
+      <Cursor1Time time="1,000.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="276"></NameColumnWidth>
-      <ValueColumnWidth column_width="72"></ValueColumnWidth>
+      <NameColumnWidth column_width="216"></NameColumnWidth>
+      <ValueColumnWidth column_width="116"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="19" />
+   <WVObjectSize size="32" />
    <wvobject fp_name="/OTTER_tb/CLK" type="logic">
       <obj_property name="ElementShortName">CLK</obj_property>
       <obj_property name="ObjectShortName">CLK</obj_property>
@@ -50,6 +50,10 @@
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="BkColor">#FFFFFF</obj_property>
    </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/ram" type="array">
+      <obj_property name="ElementShortName">ram[0:31][31:0]</obj_property>
+      <obj_property name="ObjectShortName">ram[0:31][31:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_ADR1" type="array">
       <obj_property name="ElementShortName">RF_ADR1[4:0]</obj_property>
       <obj_property name="ObjectShortName">RF_ADR1[4:0]</obj_property>
@@ -58,17 +62,25 @@
       <obj_property name="ElementShortName">RF_ADR2[4:0]</obj_property>
       <obj_property name="ObjectShortName">RF_ADR2[4:0]</obj_property>
    </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_WA" type="array">
+      <obj_property name="ElementShortName">RF_WA[4:0]</obj_property>
+      <obj_property name="ObjectShortName">RF_WA[4:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_WD" type="array">
       <obj_property name="ElementShortName">RF_WD[31:0]</obj_property>
       <obj_property name="ObjectShortName">RF_WD[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_RS1" type="array">
-      <obj_property name="ElementShortName">RF_RS1[31:0]</obj_property>
-      <obj_property name="ObjectShortName">RF_RS1[31:0]</obj_property>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/r_out1_wire" type="array">
+      <obj_property name="ElementShortName">r_out1_wire[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r_out1_wire[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_RS2" type="array">
-      <obj_property name="ElementShortName">RF_RS2[31:0]</obj_property>
-      <obj_property name="ObjectShortName">RF_RS2[31:0]</obj_property>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/r_out2_wire" type="array">
+      <obj_property name="ElementShortName">r_out2_wire[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r_out2_wire[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file_mux/sel" type="array">
+      <obj_property name="ElementShortName">sel[1:0]</obj_property>
+      <obj_property name="ObjectShortName">sel[1:0]</obj_property>
    </wvobject>
    <wvobject type="divider" fp_name="divider42">
       <obj_property name="label">EXECUTE</obj_property>
@@ -82,6 +94,10 @@
    <wvobject fp_name="/OTTER_tb/DUT/CPU/ALU/srcB" type="array">
       <obj_property name="ElementShortName">srcB[31:0]</obj_property>
       <obj_property name="ObjectShortName">srcB[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/ALU/RESULT" type="array">
+      <obj_property name="ElementShortName">RESULT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">RESULT[31:0]</obj_property>
    </wvobject>
    <wvobject type="divider" fp_name="divider43">
       <obj_property name="label">MEMORY</obj_property>
@@ -100,5 +116,41 @@
    <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_WD" type="array">
       <obj_property name="ElementShortName">RF_WD[31:0]</obj_property>
       <obj_property name="ObjectShortName">RF_WD[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_ADR1" type="array">
+      <obj_property name="ElementShortName">RF_ADR1[4:0]</obj_property>
+      <obj_property name="ObjectShortName">RF_ADR1[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_ADR2" type="array">
+      <obj_property name="ElementShortName">RF_ADR2[4:0]</obj_property>
+      <obj_property name="ObjectShortName">RF_ADR2[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_WA" type="array">
+      <obj_property name="ElementShortName">RF_WA[4:0]</obj_property>
+      <obj_property name="ObjectShortName">RF_WA[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_WD" type="array">
+      <obj_property name="ElementShortName">RF_WD[31:0]</obj_property>
+      <obj_property name="ObjectShortName">RF_WD[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_EN" type="logic">
+      <obj_property name="ElementShortName">RF_EN</obj_property>
+      <obj_property name="ObjectShortName">RF_EN</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/CLK" type="logic">
+      <obj_property name="ElementShortName">CLK</obj_property>
+      <obj_property name="ObjectShortName">CLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_RS1" type="array">
+      <obj_property name="ElementShortName">RF_RS1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">RF_RS1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_RS2" type="array">
+      <obj_property name="ElementShortName">RF_RS2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">RF_RS2[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/ram" type="array">
+      <obj_property name="ElementShortName">ram[0:31][31:0]</obj_property>
+      <obj_property name="ObjectShortName">ram[0:31][31:0]</obj_property>
    </wvobject>
 </wave_config>

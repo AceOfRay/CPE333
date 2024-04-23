@@ -6,6 +6,12 @@ main:
 	nop
 	nop
 	nop
+	li x11 0
+	nop
+	nop
+	nop
+	nop
+	nop
 	addi x11 x10 4
 	nop
 	nop

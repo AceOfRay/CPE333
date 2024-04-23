@@ -34,7 +34,7 @@ module OTTER_tb(
     
     initial begin
         BTNC=1;
-        #600 
+        #40 
         BTNC=0;
         SWITCHES=15'd0;
 

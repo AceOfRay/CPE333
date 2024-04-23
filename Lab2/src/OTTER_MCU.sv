@@ -119,7 +119,7 @@ module OTTER_MCU(
 
         // control out
         logic[3:0] alu_fun;
-        logic alu_srcA;
+        logic [1:0]alu_srcA;
         logic[1:0] alu_srcB;
         logic[1:0] rf_wr_sel;
         //logic pcWrite;
@@ -152,11 +152,10 @@ module OTTER_MCU(
         logic[31:0] branch;
         logic[31:0] d_out2;
         logic[31:0] pcOut;
-        logic[31:0] rd_addr;
 
         //control out
         logic [3:0] alu_fun;
-        logic alu_srcA;
+        logic [1:0]alu_srcA;
         logic [1:0] alu_srcB;
         logic[1:0] pcSource;
 
@@ -169,8 +168,6 @@ module OTTER_MCU(
         logic[31:0] pcOut; // + 4
         logic[31:0] nextPcOut;
         logic[31:0] aluOut;
-        logic[4:0] rd_addr;
-
         logic[31:0] wd;
         // control in
         logic[1:0] rf_wr_sel;
@@ -223,9 +220,9 @@ module OTTER_MCU(
             ex_mem.memWe2 <= dc_ex.memWe2;
             ex_mem.memRden2 <= dc_ex.memRden2;
             ex_mem.rf_wr_sel <= dc_ex.rf_wr_sel;
-            ex_mem.rd_addr <= dc_ex.instr[11:7];
             ex_mem.r_out2 <= dc_ex.r_out2;
             ex_mem.aluOut <= aluOut_wire;
+            ex_mem.instr <= dc_ex.instr;
 
             // mem_wb
             wb.nextPcOut <= ex_mem.nextPcOut;
@@ -233,7 +230,7 @@ module OTTER_MCU(
             wb.rf_wr_sel <= ex_mem.rf_wr_sel;
             wb.d_out2 <= d_out2_wire;
             wb.aluOut <= ex_mem.aluOut;
-            wb.rd_addr <= ex_mem.rd_addr;
+            wb.instr <= ex_mem.instr;
         end
     end
 
@@ -282,7 +279,7 @@ module OTTER_MCU(
     RF reg_file (
         .RF_ADR1(ft_dc.instr[19:15]),
         .RF_ADR2(ft_dc.instr[24:20]),
-        .RF_WA(wb.rd_addr),
+        .RF_WA(wb.instr[11:7]), // should come from wb
         .RF_WD(rf_wd_w),
         .RF_EN(wb.regWrite),
         .CLK(CLK),
@@ -294,10 +291,9 @@ module OTTER_MCU(
         .opcode(ft_dc.instr[6:0]),
         .funct3(ft_dc.instr[14:12]),
         .funct7(ft_dc.instr[30]),
-        .alu_srcA(ex_mem.alu_srcA),
-        .alu_srcB(ex_mem.alu_srcB),
-        //.pcSource(), // modify decoder and come back
-        .rf_wr_sel(ex_mem.rf_wr_sel),
+        .alu_srcA(alu_srcA_sel),
+        .alu_srcB(alu_srcB_sel),
+        .rf_wr_sel(rf_wr_sel_wire),
         .alu_fun (alu_fun_wire),
         .memRead2 (memRd2_wire), // POINT OF BREAK POSSIBLY
         .memWrite (memWrite_wire),
