@@ -23,7 +23,7 @@ module CU_DCDR(
     input [2:0] funct3,
     input funct7,
     output logic [3:0] alu_fun,
-    output logic alu_srcA,
+    output logic [1:0]alu_srcA,
     output logic [1:0] alu_srcB,
     output logic [1:0] rf_wr_sel,
     output logic regWrite,

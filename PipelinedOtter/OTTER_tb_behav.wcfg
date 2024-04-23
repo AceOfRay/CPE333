@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="135.701 ns"></ZoomEndTime>
+      <ZoomEndTime time="85.101 ns"></ZoomEndTime>
       <Cursor1Time time="1,000.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="216"></NameColumnWidth>
+      <NameColumnWidth column_width="208"></NameColumnWidth>
       <ValueColumnWidth column_width="116"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="32" />
+   <WVObjectSize size="23" />
    <wvobject fp_name="/OTTER_tb/CLK" type="logic">
       <obj_property name="ElementShortName">CLK</obj_property>
       <obj_property name="ObjectShortName">CLK</obj_property>
@@ -116,41 +116,5 @@
    <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_WD" type="array">
       <obj_property name="ElementShortName">RF_WD[31:0]</obj_property>
       <obj_property name="ObjectShortName">RF_WD[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_ADR1" type="array">
-      <obj_property name="ElementShortName">RF_ADR1[4:0]</obj_property>
-      <obj_property name="ObjectShortName">RF_ADR1[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_ADR2" type="array">
-      <obj_property name="ElementShortName">RF_ADR2[4:0]</obj_property>
-      <obj_property name="ObjectShortName">RF_ADR2[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_WA" type="array">
-      <obj_property name="ElementShortName">RF_WA[4:0]</obj_property>
-      <obj_property name="ObjectShortName">RF_WA[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_WD" type="array">
-      <obj_property name="ElementShortName">RF_WD[31:0]</obj_property>
-      <obj_property name="ObjectShortName">RF_WD[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_EN" type="logic">
-      <obj_property name="ElementShortName">RF_EN</obj_property>
-      <obj_property name="ObjectShortName">RF_EN</obj_property>
-   </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/CLK" type="logic">
-      <obj_property name="ElementShortName">CLK</obj_property>
-      <obj_property name="ObjectShortName">CLK</obj_property>
-   </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_RS1" type="array">
-      <obj_property name="ElementShortName">RF_RS1[31:0]</obj_property>
-      <obj_property name="ObjectShortName">RF_RS1[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_RS2" type="array">
-      <obj_property name="ElementShortName">RF_RS2[31:0]</obj_property>
-      <obj_property name="ObjectShortName">RF_RS2[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/ram" type="array">
-      <obj_property name="ElementShortName">ram[0:31][31:0]</obj_property>
-      <obj_property name="ObjectShortName">ram[0:31][31:0]</obj_property>
    </wvobject>
 </wave_config>
