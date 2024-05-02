@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="85.101 ns"></ZoomEndTime>
+      <ZoomEndTime time="230.821 ns"></ZoomEndTime>
       <Cursor1Time time="1,000.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="208"></NameColumnWidth>
+      <NameColumnWidth column_width="192"></NameColumnWidth>
       <ValueColumnWidth column_width="116"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="23" />
+   <WVObjectSize size="28" />
    <wvobject fp_name="/OTTER_tb/CLK" type="logic">
       <obj_property name="ElementShortName">CLK</obj_property>
       <obj_property name="ObjectShortName">CLK</obj_property>
@@ -70,18 +70,6 @@
       <obj_property name="ElementShortName">RF_WD[31:0]</obj_property>
       <obj_property name="ObjectShortName">RF_WD[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/r_out1_wire" type="array">
-      <obj_property name="ElementShortName">r_out1_wire[31:0]</obj_property>
-      <obj_property name="ObjectShortName">r_out1_wire[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/r_out2_wire" type="array">
-      <obj_property name="ElementShortName">r_out2_wire[31:0]</obj_property>
-      <obj_property name="ObjectShortName">r_out2_wire[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file_mux/sel" type="array">
-      <obj_property name="ElementShortName">sel[1:0]</obj_property>
-      <obj_property name="ObjectShortName">sel[1:0]</obj_property>
-   </wvobject>
    <wvobject type="divider" fp_name="divider42">
       <obj_property name="label">EXECUTE</obj_property>
       <obj_property name="DisplayName">label</obj_property>
@@ -116,5 +104,37 @@
    <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_WD" type="array">
       <obj_property name="ElementShortName">RF_WD[31:0]</obj_property>
       <obj_property name="ObjectShortName">RF_WD[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/FWD_UNIT/R_OUT1" type="array">
+      <obj_property name="ElementShortName">R_OUT1[4:0]</obj_property>
+      <obj_property name="ObjectShortName">R_OUT1[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/FWD_UNIT/R_OUT2" type="array">
+      <obj_property name="ElementShortName">R_OUT2[4:0]</obj_property>
+      <obj_property name="ObjectShortName">R_OUT2[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/FWD_UNIT/EX_MEM_RD_ADDR" type="array">
+      <obj_property name="ElementShortName">EX_MEM_RD_ADDR[4:0]</obj_property>
+      <obj_property name="ObjectShortName">EX_MEM_RD_ADDR[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/FWD_UNIT/WB_RD_ADDR" type="array">
+      <obj_property name="ElementShortName">WB_RD_ADDR[4:0]</obj_property>
+      <obj_property name="ObjectShortName">WB_RD_ADDR[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/FWD_UNIT/EX_MEM_REG_WRITE" type="logic">
+      <obj_property name="ElementShortName">EX_MEM_REG_WRITE</obj_property>
+      <obj_property name="ObjectShortName">EX_MEM_REG_WRITE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/FWD_UNIT/MEM_WB_REG_WRITE" type="logic">
+      <obj_property name="ElementShortName">MEM_WB_REG_WRITE</obj_property>
+      <obj_property name="ObjectShortName">MEM_WB_REG_WRITE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/FWD_UNIT/FWD_A_SEL" type="array">
+      <obj_property name="ElementShortName">FWD_A_SEL[1:0]</obj_property>
+      <obj_property name="ObjectShortName">FWD_A_SEL[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/FWD_UNIT/FWD_B_SEL" type="array">
+      <obj_property name="ElementShortName">FWD_B_SEL[1:0]</obj_property>
+      <obj_property name="ObjectShortName">FWD_B_SEL[1:0]</obj_property>
    </wvobject>
 </wave_config>

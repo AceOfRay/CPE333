@@ -88,6 +88,13 @@ module OTTER_MCU(
 
     logic[31:0] rf_wd_w;
 
+    // forwarding wires
+
+    logic[1:0] fwd_a_sel_wire;
+    logic[1:0] fwd_b_sel_wire;
+    logic[31:0] alu_mux_a_wire;
+    logic[31:0] alu_mux_b_wire;
+
     typedef struct packed {
 
         // data out
@@ -337,7 +344,7 @@ module OTTER_MCU(
         .C (0),
         .D (0),
         .sel(dc_ex.alu_srcA),
-        .O (alu_inA)
+        .O (alu_mux_a_wire)
     );
 
     mux_2bit_sel alu_srcB_mux (
@@ -346,7 +353,7 @@ module OTTER_MCU(
         .C (dc_ex.S),
         .D (dc_ex.pcOut),
         .sel(dc_ex.alu_srcB),
-        .O (alu_inB)
+        .O (alu_mux_b_wire)
     );
 
     ALU ALU (
@@ -354,6 +361,35 @@ module OTTER_MCU(
         .srcB(alu_inB),
         .ALU_FUN(dc_ex.alu_fun),
         .RESULT(aluOut_wire)
+    );
+
+    FWD_UNIT FWD_UNIT (
+        .R_OUT1(dc_ex.r_out1),
+        .R_OUT2(dc_ex.r_out2),
+        .EX_MEM_RD_ADDR(ex_mem.instr[11:7]),
+        .WB_RD_ADDR(wb.instr[11:7]),
+        .EX_MEM_REG_WRITE(ex_mem.regWrite),
+        .MEM_WB_REG_WRITE(wb.regWrite),
+        .FWD_A_SEL(fwd_a_sel_wire),
+        .FWD_B_SEL(fwd_b_sel_wire)
+    );
+
+    mux_2bit_sel fwd_a_mux (
+        .A (alu_mux_a_wire),
+        .B (rf_wd_w),
+        .C (ex_mem.aluOut),
+        .D (0),
+        .O (alu_inA),
+        .sel (fwd_a_sel_wire)
+    );
+
+    mux_2bit_sel fwd_b_mux (
+        .A (alu_mux_b_wire),
+        .B (rf_wd_w),
+        .C (ex_mem.aluOut),
+        .D (0),
+        .O (alu_inB),
+        .sel (fwd_b_sel_wire)
     );
 
 //----------------------------PHASE 4--------------------------------------------
