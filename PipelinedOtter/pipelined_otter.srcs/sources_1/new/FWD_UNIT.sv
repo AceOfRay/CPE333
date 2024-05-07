@@ -31,27 +31,27 @@ module FWD_UNIT(
     output logic [1:0] FWD_B_SEL
     );
 
-    always_comb begin : forward_logic
-        if ((EX_MEM_REG_WRITE && (EX_MEM_RD_ADDR != 0)) && (EX_MEM_RD_ADDR == R_OUT1)) begin
-            FWD_A_SEL = 2'b10;
-        end
-        else if ((MEM_WB_REG_WRITE && (WB_RD_ADDR != 0)) && WB_RD_ADDR == R_OUT1) begin
-            FWD_A_SEL = 2'b01;
-        end
-        else begin
-            FWD_A_SEL = 2'b00;
-        end
+    always_comb begin
+		if (EX_MEM_REG_WRITE && (EX_MEM_RD_ADDR != 0) && (EX_MEM_RD_ADDR == R_OUT1)) begin
+			FWD_A_SEL = 2'b10;
+		end
+		else if (MEM_WB_REG_WRITE && (WB_RD_ADDR != 0) && (WB_RD_ADDR ==  R_OUT1)) begin
+			FWD_A_SEL = 2'b01;
+		end
+		else begin
+			FWD_A_SEL = 2'b00;
+		end
 
-        if ((EX_MEM_REG_WRITE && (EX_MEM_RD_ADDR != 0)) && (EX_MEM_RD_ADDR == R_OUT2)) begin
-            FWD_B_SEL = 2'b10;
-        end
-        else if ((MEM_WB_REG_WRITE && (WB_RD_ADDR != 0)) && (WB_RD_ADDR == R_OUT2)) begin
-            FWD_B_SEL = 2'b01;
-        end
-        else begin
-            FWD_B_SEL = 2'b00;
-        end
-    end
+		if (EX_MEM_REG_WRITE && (EX_MEM_RD_ADDR != 0) && (EX_MEM_RD_ADDR == R_OUT2)) begin
+			FWD_B_SEL = 2'b10;
+		end
+		else if (MEM_WB_REG_WRITE && (WB_RD_ADDR != 0) && (WB_RD_ADDR ==  R_OUT2)) begin
+			FWD_B_SEL = 2'b01;
+		end
+		else begin
+			FWD_B_SEL = 2'b00;
+		end
+	end
     
     
 endmodule

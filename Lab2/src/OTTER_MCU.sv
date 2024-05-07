@@ -364,8 +364,8 @@ module OTTER_MCU(
     );
 
     FWD_UNIT FWD_UNIT (
-        .R_OUT1(dc_ex.r_out1),
-        .R_OUT2(dc_ex.r_out2),
+        .R_OUT1(dc_ex.instr[19:15]),
+        .R_OUT2(dc_ex.instr[24:20]),
         .EX_MEM_RD_ADDR(ex_mem.instr[11:7]),
         .WB_RD_ADDR(wb.instr[11:7]),
         .EX_MEM_REG_WRITE(ex_mem.regWrite),

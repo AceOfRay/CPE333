@@ -1,0 +1,10 @@
+Vivado Simulator v2022.2
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot OTTER_tb_behav xil_defaultlib.OTTER_tb xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 3 differs from formal bit length 2 for port 'alu_srcB' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/ForwardedPipelinedOtter/noHazardPipelinedOttersrc/OTTER_MCU.sv:295]
+WARNING: [VRFC 10-3091] actual bit length 2 differs from formal bit length 3 for port 'pcSource' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/ForwardedPipelinedOtter/noHazardPipelinedOttersrc/OTTER_MCU.sv:320]
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel

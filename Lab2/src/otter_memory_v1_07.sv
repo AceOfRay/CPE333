@@ -70,7 +70,7 @@
     (* ram_decomp = "power" *) logic [31:0] memory [0:16383];
     
     initial begin
-        $readmemh("testForwarding.mem", memory);
+        $readmemh("testMemLoadUse.mem", memory);
     end
     
     assign wordAddr2 = MEM_ADDR2[15:2];

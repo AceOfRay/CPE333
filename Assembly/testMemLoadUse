@@ -1,0 +1,9 @@
+.data
+
+value:	.word 10
+
+.text
+main:
+	la	x9 value
+	lw	x10 0(x9)
+	addi	x11 x10 4

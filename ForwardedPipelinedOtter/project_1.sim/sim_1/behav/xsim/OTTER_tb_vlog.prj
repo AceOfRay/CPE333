@@ -1,0 +1,24 @@
+# compile verilog/system verilog design source files
+sv xil_defaultlib  \
+"../../../../noHazardPipelinedOttersrc/ALU.sv" \
+"../../../../../Lab2/src/BCD.sv" \
+"../../../../noHazardPipelinedOttersrc/BRANCH_ADDR_GEN.sv" \
+"../../../../noHazardPipelinedOttersrc/BRANCH_COND_GEN.sv" \
+"../../../../noHazardPipelinedOttersrc/CU_DCDR.sv" \
+"../../../../../Lab2/src/CathodeDriver.sv" \
+"../../../../noHazardPipelinedOttersrc/IMMED_GEN.sv" \
+"../../../../noHazardPipelinedOttersrc/OTTER_MCU.sv" \
+"../../../../noHazardPipelinedOttersrc/OTTER_Wrapper_v1_02.sv" \
+"../../../../noHazardPipelinedOttersrc/PC.sv" \
+"../../../../noHazardPipelinedOttersrc/RF.sv" \
+"../../../../noHazardPipelinedOttersrc/SevSegDisp.sv" \
+"../../../../noHazardPipelinedOttersrc/debounce_one_shot.sv" \
+"../../../../noHazardPipelinedOttersrc/mux_2bit_sel.sv" \
+"../../../../noHazardPipelinedOttersrc/otter_memory_v1_07.sv" \
+"../../../../../Lab2/tb/OTTER_tb.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

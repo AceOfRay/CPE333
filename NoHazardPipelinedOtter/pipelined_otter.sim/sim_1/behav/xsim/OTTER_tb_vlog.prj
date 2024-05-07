@@ -1,0 +1,24 @@
+# compile verilog/system verilog design source files
+sv xil_defaultlib  \
+"../../../../../Lab2/src/ALU.sv" \
+"../../../../../Lab2/src/BCD.sv" \
+"../../../../../Lab2/src/BRANCH_ADDR_GEN.sv" \
+"../../../../../Lab2/src/BRANCH_COND_GEN.sv" \
+"../../../../../Lab2/src/CU_DCDR.sv" \
+"../../../../../Lab2/src/CathodeDriver.sv" \
+"../../../../../Lab2/src/IMMED_GEN.sv" \
+"../../../../../Lab2/src/OTTER_MCU.sv" \
+"../../../../../Lab2/src/OTTER_Wrapper_v1_02.sv" \
+"../../../../../Lab2/src/PC.sv" \
+"../../../../../Lab2/src/RF.sv" \
+"../../../../../Lab2/src/SevSegDisp.sv" \
+"../../../../../Lab2/src/debounce_one_shot.sv" \
+"../../../../../Lab2/src/mux_2bit_sel.sv" \
+"../../../../../Lab2/src/otter_memory_v1_07.sv" \
+"../../../../../Lab2/tb/OTTER_tb.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
