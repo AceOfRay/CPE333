@@ -1,6 +1,6 @@
 .data
 
-value:	.word 10
+value:	.word 1
 
 .text
 main:

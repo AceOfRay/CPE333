@@ -72,7 +72,7 @@ module OTTER_MCU(
     logic memRd2_wire;
     logic regWrite_wire;
     logic memWrite_wire;
-    
+
     // execute_memory wires
 
     logic [31:0] aluOut_wire;
@@ -243,7 +243,6 @@ module OTTER_MCU(
 
     // ---------------PHASE 1 ------------------------------------
 
-        
     Memory Memory (
         .MEM_CLK  (CLK),
         .IO_IN(IOBUS_IN),
@@ -404,5 +403,5 @@ module OTTER_MCU(
         .sel (wb.rf_wr_sel),
         .O (rf_wd_w)
     );
-    
+
     endmodule
