@@ -32,7 +32,7 @@ module OTTER_MCU(
 
     // fetch_decode wires
 
-    logic staticPCWrite = 1'b1;
+    logic stall; //staticPCWrite
     logic staticRDEN = 1'b1;
 
     logic [31:0] alu_inA;
@@ -195,49 +195,61 @@ module OTTER_MCU(
             wb <= 0;
         end
         else begin
-            // ft_dec
-            ft_dc.pcOut <= pcOutWire;
-            ft_dc.nextPcOut <= nextPcOutWire;
-            ft_dc.instr <= instrWire;
+            if (stall == 1) begin
+                // zero out id_ex reg
+                dc_ex <= 0;
 
-            // dc_ex
-            dc_ex.pcOut <= ft_dc.pcOut;
-            dc_ex.nextPcOut <= ft_dc.nextPcOut;
-            dc_ex.instr <= ft_dc.instr;
-            dc_ex.regWrite <= regWrite_wire;
-            dc_ex.memWe2 <= memWrite_wire;
-            dc_ex.memRden2 <= memRd2_wire;
-            dc_ex.alu_fun <= alu_fun_wire;
-            dc_ex.alu_srcA <= alu_srcA_sel;
-            dc_ex.alu_srcB <= alu_srcB_sel;
-            dc_ex.rf_wr_sel <= rf_wr_sel_wire;
-            dc_ex.r_out1 <= r_out1_wire;
-            dc_ex.r_out2 <= r_out2_wire;
-            dc_ex.U <= u_wire;
-            dc_ex.S <= s_wire;
-            dc_ex.J <= j_wire;
-            dc_ex.I <= i_wire;
-            dc_ex.B <= b_wire;
+                // hold data in if_id reg
+                ft_dc.pcOut <= ft_dc.pcOut;
+                ft_dc.nextPcOut <= ft_dc.nextPcOut;
+                ft_dc.instr <= ft_dc.instr;
+            end else begin
+                // ft_dec
+                ft_dc.pcOut <= pcOutWire;
+                ft_dc.nextPcOut <= nextPcOutWire;
+                //ft_dc.instr <= instrWire; // ------------------------------------------------------
 
-            // ex_mem
-            ex_mem.nextPcOut <= dc_ex.nextPcOut;
-            ex_mem.memSize <= dc_ex.instr[13:12];
-            ex_mem.memSign <= dc_ex.instr[14];
-            ex_mem.regWrite <= dc_ex.regWrite;
-            ex_mem.memWe2 <= dc_ex.memWe2;
-            ex_mem.memRden2 <= dc_ex.memRden2;
-            ex_mem.rf_wr_sel <= dc_ex.rf_wr_sel;
-            ex_mem.r_out2 <= dc_ex.r_out2;
-            ex_mem.aluOut <= aluOut_wire;
-            ex_mem.instr <= dc_ex.instr;
+                // dc_ex
+                dc_ex.pcOut <= ft_dc.pcOut;
+                dc_ex.nextPcOut <= ft_dc.nextPcOut;
+                dc_ex.instr <= instrWire;   // -----------------------------------------------------
+                dc_ex.regWrite <= regWrite_wire;
+                dc_ex.memWe2 <= memWrite_wire;
+                dc_ex.memRden2 <= memRd2_wire;
+                dc_ex.alu_fun <= alu_fun_wire;
+                dc_ex.alu_srcA <= alu_srcA_sel;
+                dc_ex.alu_srcB <= alu_srcB_sel;
+                dc_ex.rf_wr_sel <= rf_wr_sel_wire;
+                dc_ex.r_out1 <= r_out1_wire;
+                dc_ex.r_out2 <= r_out2_wire;
+                dc_ex.U <= u_wire;
+                dc_ex.S <= s_wire;
+                dc_ex.J <= j_wire;
+                dc_ex.I <= i_wire;
+                dc_ex.B <= b_wire;
 
-            // mem_wb
-            wb.nextPcOut <= ex_mem.nextPcOut;
-            wb.regWrite <= ex_mem.regWrite;
-            wb.rf_wr_sel <= ex_mem.rf_wr_sel;
-            wb.d_out2 <= d_out2_wire;
-            wb.aluOut <= ex_mem.aluOut;
-            wb.instr <= ex_mem.instr;
+                // ex_mem
+                ex_mem.nextPcOut <= dc_ex.nextPcOut;
+                ex_mem.memSize <= dc_ex.instr[13:12];
+                ex_mem.memSign <= dc_ex.instr[14];
+                ex_mem.regWrite <= dc_ex.regWrite;
+                ex_mem.memWe2 <= dc_ex.memWe2;
+                ex_mem.memRden2 <= dc_ex.memRden2;
+                ex_mem.rf_wr_sel <= dc_ex.rf_wr_sel;
+                ex_mem.r_out2 <= dc_ex.r_out2;
+                ex_mem.aluOut <= aluOut_wire;
+                ex_mem.instr <= dc_ex.instr;
+
+                // mem_wb
+                wb.nextPcOut <= ex_mem.nextPcOut;
+                wb.regWrite <= ex_mem.regWrite;
+                wb.rf_wr_sel <= ex_mem.rf_wr_sel;
+                //wb.d_out2 <= d_out2_wire;
+                wb.aluOut <= ex_mem.aluOut;
+                wb.instr <= ex_mem.instr;
+            end
+
+            
         end
     end
 
@@ -264,7 +276,7 @@ module OTTER_MCU(
     );
 
     PC ProgramCounter (
-        .PC_WRITE(staticPCWrite),
+        .PC_WRITE(!stall),
         .PC_RST  (RST),
         .PC_COUNT(pcOutWire),
         .CLK     (CLK),
@@ -283,8 +295,8 @@ module OTTER_MCU(
 //----------------------------PHASE 2--------------------------------------------
 
     RF reg_file (
-        .RF_ADR1(ft_dc.instr[19:15]),
-        .RF_ADR2(ft_dc.instr[24:20]),
+        .RF_ADR1(instrWire[19:15]),
+        .RF_ADR2(instrWire[24:20]),
         .RF_WA(wb.instr[11:7]), // should come from wb
         .RF_WD(rf_wd_w),
         .RF_EN(wb.regWrite),
@@ -293,15 +305,23 @@ module OTTER_MCU(
         .RF_RS2(r_out2_wire)
     );
 
+    HZD_DET hzd_det (
+        .ID_EX_MEM_READ (dc_ex.memRden2),
+        .IF_ID_R_OUT1   (instrWire[24:20]),
+        .IF_ID_R_OUT2   (instrWire[19:15]),
+        .DC_EX_RD       (dc_ex.instr[11:7]),
+        .BUBBLE         (stall)
+    );
+
     CU_DCDR dcdr (
-        .opcode(ft_dc.instr[6:0]),
-        .funct3(ft_dc.instr[14:12]),
-        .funct7(ft_dc.instr[30]),
+        .opcode(instrWire[6:0]),
+        .funct3(instrWire[14:12]),
+        .funct7(instrWire[30]),
         .alu_srcA(alu_srcA_sel),
         .alu_srcB(alu_srcB_sel),
         .rf_wr_sel(rf_wr_sel_wire),
         .alu_fun (alu_fun_wire),
-        .memRead2 (memRd2_wire), // POINT OF BREAK POSSIBLY
+        .memRead2 (memRd2_wire),
         .memWrite (memWrite_wire),
         .regWrite (regWrite_wire),
         .csr_WE (),
@@ -309,7 +329,7 @@ module OTTER_MCU(
     );
 
     IMMED_GEN immed_gen (
-        .INSTRUCT(ft_dc.instr[31:7]),
+        .INSTRUCT(instrWire[31:7]),
         .U_TYPE  (u_wire),
         .I_TYPE  (i_wire),
         .S_TYPE  (s_wire),
@@ -338,21 +358,21 @@ module OTTER_MCU(
     );
 
     mux_2bit_sel alu_srcA_mux (
-        .A (dc_ex.r_out1),
+        .A (alu_mux_a_wire),
         .B (dc_ex.U),
         .C (0),
         .D (0),
         .sel(dc_ex.alu_srcA),
-        .O (alu_mux_a_wire)
+        .O (alu_inA)
     );
 
     mux_2bit_sel alu_srcB_mux (
-        .A (dc_ex.r_out2),
+        .A (alu_mux_b_wire),
         .B (dc_ex.I),
         .C (dc_ex.S),
         .D (dc_ex.pcOut),
         .sel(dc_ex.alu_srcB),
-        .O (alu_mux_b_wire)
+        .O (alu_inB)
     );
 
     ALU ALU (
@@ -374,20 +394,20 @@ module OTTER_MCU(
     );
 
     mux_2bit_sel fwd_a_mux (
-        .A (alu_mux_a_wire),
+        .A (dc_ex.r_out1),
         .B (rf_wd_w),
         .C (ex_mem.aluOut),
         .D (0),
-        .O (alu_inA),
+        .O (alu_mux_a_wire),
         .sel (fwd_a_sel_wire)
     );
 
     mux_2bit_sel fwd_b_mux (
-        .A (alu_mux_b_wire),
+        .A (dc_ex.r_out2),
         .B (rf_wd_w),
         .C (ex_mem.aluOut),
         .D (0),
-        .O (alu_inB),
+        .O (alu_mux_b_wire),
         .sel (fwd_b_sel_wire)
     );
 
@@ -398,7 +418,7 @@ module OTTER_MCU(
     mux_2bit_sel reg_file_mux (
         .A (wb.nextPcOut),
         .B (0),
-        .C (wb.d_out2),
+        .C (d_out2_wire),
         .D (wb.aluOut),
         .sel (wb.rf_wr_sel),
         .O (rf_wd_w)

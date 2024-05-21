@@ -4,8 +4,13 @@ Running: C:/Xilinx/Vivado/2022.2/bin/unwrapped/win64.o/xelab.exe --incr --debug 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
+<<<<<<< HEAD
 WARNING: [VRFC 10-3091] actual bit length 3 differs from formal bit length 2 for port 'alu_srcB' [C:/Users/Ray/CalPoly/2023/CPE333/Lab2/src/OTTER_MCU.sv:302]
 WARNING: [VRFC 10-3091] actual bit length 2 differs from formal bit length 3 for port 'pcSource' [C:/Users/Ray/CalPoly/2023/CPE333/Lab2/src/OTTER_MCU.sv:327]
+=======
+WARNING: [VRFC 10-3091] actual bit length 3 differs from formal bit length 2 for port 'alu_srcB' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:322]
+WARNING: [VRFC 10-3091] actual bit length 2 differs from formal bit length 3 for port 'pcSource' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:347]
+>>>>>>> ab5ba988deae8f179456a57f52293199af0a5352
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
@@ -14,6 +19,10 @@ Compiling module xil_defaultlib.Memory
 Compiling module xil_defaultlib.PC
 Compiling module xil_defaultlib.mux_2bit_sel
 Compiling module xil_defaultlib.RF
+<<<<<<< HEAD
+=======
+Compiling module xil_defaultlib.HZD_DET
+>>>>>>> ab5ba988deae8f179456a57f52293199af0a5352
 Compiling module xil_defaultlib.CU_DCDR
 Compiling module xil_defaultlib.IMMED_GEN
 Compiling module xil_defaultlib.BRANCH_COND_GEN

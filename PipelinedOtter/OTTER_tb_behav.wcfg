@@ -12,12 +12,12 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="230.821 ns"></ZoomEndTime>
+      <ZoomEndTime time="132.660 ns"></ZoomEndTime>
       <Cursor1Time time="1,000.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="192"></NameColumnWidth>
-      <ValueColumnWidth column_width="116"></ValueColumnWidth>
+      <ValueColumnWidth column_width="108"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="28" />
    <wvobject fp_name="/OTTER_tb/CLK" type="logic">
@@ -53,6 +53,7 @@
    <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/ram" type="array">
       <obj_property name="ElementShortName">ram[0:31][31:0]</obj_property>
       <obj_property name="ObjectShortName">ram[0:31][31:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file/RF_ADR1" type="array">
       <obj_property name="ElementShortName">RF_ADR1[4:0]</obj_property>
@@ -105,36 +106,36 @@
       <obj_property name="ElementShortName">RF_WD[31:0]</obj_property>
       <obj_property name="ObjectShortName">RF_WD[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/FWD_UNIT/R_OUT1" type="array">
-      <obj_property name="ElementShortName">R_OUT1[4:0]</obj_property>
-      <obj_property name="ObjectShortName">R_OUT1[4:0]</obj_property>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/stall" type="logic">
+      <obj_property name="ElementShortName">stall</obj_property>
+      <obj_property name="ObjectShortName">stall</obj_property>
    </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/FWD_UNIT/R_OUT2" type="array">
-      <obj_property name="ElementShortName">R_OUT2[4:0]</obj_property>
-      <obj_property name="ObjectShortName">R_OUT2[4:0]</obj_property>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file_mux/A" type="array">
+      <obj_property name="ElementShortName">A[31:0]</obj_property>
+      <obj_property name="ObjectShortName">A[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/FWD_UNIT/EX_MEM_RD_ADDR" type="array">
-      <obj_property name="ElementShortName">EX_MEM_RD_ADDR[4:0]</obj_property>
-      <obj_property name="ObjectShortName">EX_MEM_RD_ADDR[4:0]</obj_property>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file_mux/B" type="array">
+      <obj_property name="ElementShortName">B[31:0]</obj_property>
+      <obj_property name="ObjectShortName">B[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/FWD_UNIT/WB_RD_ADDR" type="array">
-      <obj_property name="ElementShortName">WB_RD_ADDR[4:0]</obj_property>
-      <obj_property name="ObjectShortName">WB_RD_ADDR[4:0]</obj_property>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file_mux/C" type="array">
+      <obj_property name="ElementShortName">C[31:0]</obj_property>
+      <obj_property name="ObjectShortName">C[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/FWD_UNIT/EX_MEM_REG_WRITE" type="logic">
-      <obj_property name="ElementShortName">EX_MEM_REG_WRITE</obj_property>
-      <obj_property name="ObjectShortName">EX_MEM_REG_WRITE</obj_property>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file_mux/D" type="array">
+      <obj_property name="ElementShortName">D[31:0]</obj_property>
+      <obj_property name="ObjectShortName">D[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/FWD_UNIT/MEM_WB_REG_WRITE" type="logic">
-      <obj_property name="ElementShortName">MEM_WB_REG_WRITE</obj_property>
-      <obj_property name="ObjectShortName">MEM_WB_REG_WRITE</obj_property>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file_mux/sel" type="array">
+      <obj_property name="ElementShortName">sel[1:0]</obj_property>
+      <obj_property name="ObjectShortName">sel[1:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/FWD_UNIT/FWD_A_SEL" type="array">
-      <obj_property name="ElementShortName">FWD_A_SEL[1:0]</obj_property>
-      <obj_property name="ObjectShortName">FWD_A_SEL[1:0]</obj_property>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/reg_file_mux/O" type="array">
+      <obj_property name="ElementShortName">O[31:0]</obj_property>
+      <obj_property name="ObjectShortName">O[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/OTTER_tb/DUT/CPU/FWD_UNIT/FWD_B_SEL" type="array">
-      <obj_property name="ElementShortName">FWD_B_SEL[1:0]</obj_property>
-      <obj_property name="ObjectShortName">FWD_B_SEL[1:0]</obj_property>
+   <wvobject fp_name="/OTTER_tb/DUT/CPU/hzd_det/BUBBLE" type="logic">
+      <obj_property name="ElementShortName">BUBBLE</obj_property>
+      <obj_property name="ObjectShortName">BUBBLE</obj_property>
    </wvobject>
 </wave_config>
