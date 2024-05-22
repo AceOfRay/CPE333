@@ -92,4 +92,10 @@ module OtterMemory (
          .MEMVALID       ()
      );
 
+    Comparator comp (
+        .tag1(),
+        .tag2(),
+        .result()
+    )
+
 endmodule
