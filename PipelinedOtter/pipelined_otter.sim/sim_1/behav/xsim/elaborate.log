@@ -12,6 +12,7 @@ WARNING: [VRFC 10-3091] actual bit length 3 differs from formal bit length 2 for
 WARNING: [VRFC 10-3091] actual bit length 2 differs from formal bit length 3 for port 'pcSource' [C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/src/OTTER_MCU.sv:347]
 >>>>>>> ab5ba988deae8f179456a57f52293199af0a5352
 Completed static elaboration
+<<<<<<< Updated upstream
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
@@ -38,3 +39,6 @@ Compiling module xil_defaultlib.OTTER_Wrapper
 Compiling module xil_defaultlib.OTTER_tb
 Compiling module xil_defaultlib.glbl
 Built simulation snapshot OTTER_tb_behav
+=======
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+>>>>>>> Stashed changes

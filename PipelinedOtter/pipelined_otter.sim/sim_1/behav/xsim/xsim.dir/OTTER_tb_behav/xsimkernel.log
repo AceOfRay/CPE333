@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 Running: xsim.dir/OTTER_tb_behav/xsimk.exe -simmode gui -wdb OTTER_tb_behav.wdb -simrunnum 0 -socket 63654
 Design successfully loaded
@@ -8,3 +9,12 @@ Simulation Memory Usage: 8800 KB (Peak: 8800 KB)
 Simulation CPU Usage: 46 ms
 =======
 >>>>>>> ab5ba988deae8f179456a57f52293199af0a5352
+=======
+Running: xsim.dir/OTTER_tb_behav/xsimk.exe -simmode gui -wdb OTTER_tb_behav.wdb -simrunnum 0 -socket 52151
+Design successfully loaded
+Design Loading Memory Usage: 7328 KB (Peak: 7328 KB)
+Design Loading CPU Usage: 30 ms
+Simulation completed
+Simulation Memory Usage: 8100 KB (Peak: 8100 KB)
+Simulation CPU Usage: 30 ms
+>>>>>>> Stashed changes

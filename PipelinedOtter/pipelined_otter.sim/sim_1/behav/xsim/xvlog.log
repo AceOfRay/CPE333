@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Ray/CalPoly/2023/CPE333/Lab2/src/ALU.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module ALU
@@ -70,3 +71,5 @@ INFO: [VRFC 10-311] analyzing module Memory
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/Ray Valenzuela/Cal Poly/2023-2024/Spring/CPE333/Lab2/tb/OTTER_tb.sv" into library xil_defaultlib
 >>>>>>> ab5ba988deae8f179456a57f52293199af0a5352
 INFO: [VRFC 10-311] analyzing module OTTER_tb
+=======
+>>>>>>> Stashed changes
