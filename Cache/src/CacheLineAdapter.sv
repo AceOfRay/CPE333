@@ -36,6 +36,7 @@ module CacheLineAdapter (
     input memValid,
     input [255:0] cacheDataIn, // data from cache to memory
     input [31:0] memDataIn,
+    input toggle,
     output logic ready,
     output [255:0] cacheDataOut, // data from memory to cache
     output [31:0] memDataOut //
@@ -53,11 +54,11 @@ module CacheLineAdapter (
 
     state current, nxt;
 
-    always_ff @(posedge CLK) begin 
-        if (RST) begin 
+    always_ff @(posedge CLK) begin
+        if (RST) begin
             current <= WAIT;
-        end 
-        else begin 
+        end
+        else begin
             current <= nxt;
         end
     end

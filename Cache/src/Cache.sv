@@ -5,8 +5,8 @@ module Cache (
     input re,
     input clk,
     input reset,
-    output reg [31:0] dataOut,
-    output reg miss // Signals if the operation is complete
+    output logic [31:0] dataOut,
+    output logic miss // Signals if the operation is complete
 );
     // Address breakdown
     logic [23:0] tag;
@@ -72,7 +72,7 @@ module Cache (
             miss <= 1'b0;
             if (hitW0 || hitW1) begin
                 // Hit
-                line = mem[set][correctWay];
+                line <= mem[set][correctWay];
                 case (offset[4:2]) // Select the word within the line
                     3'd0: dataOut <= line[31:0];
                     3'd1: dataOut <= line[63:32];
@@ -94,7 +94,7 @@ module Cache (
             miss <= 1'b0;
             if (hitW0 || hitW1) begin
                 // Hit
-                line = mem[set][correctWay];
+                line <= mem[set][correctWay];
                 case (offset[4:2]) // Write the word within the line
                     3'd0: mem[set][correctWay][31:0] <= dataIn[31:0];
                     3'd1: mem[set][correctWay][63:32] <= dataIn[63:32];

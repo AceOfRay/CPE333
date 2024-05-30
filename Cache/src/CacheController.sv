@@ -31,13 +31,8 @@ module CacheController(
     input CLK,
     input rden,
     input wen,
-    input [23:0] tag,
-    input [2:0] set,
-    input [4:0] offset,
-    input comp_res,
-    output busy,
-    output read_res,
-    output w_res
+    input cache_ready,
+    output toggle
     );
 
     typedef enum logic [2:0] {
@@ -56,46 +51,30 @@ module CacheController(
         else
             current <= nxt;
     end
- 
 
     always_comb begin
         nxt = current;
         case (current)
             START: begin
                 if (rden || wen) nxt = COMPARE;
-                   
                     //start reading from tag array, dataArray, and validArray
             end
             COMPARE: begin
-                if (comp_res && rden) begin
+                if (rden) begin
                     nxt = START;
-                    read_res = 1;
-                    // update lru
+                    // update lru : cache
                 end
-                else if (comp_res && wen) begin
+                else if (wen) begin
                     nxt = START;
-                    w_res = 1;
-                    // set dirty &update lru
+                    // set dirty &update lru : cache
                  end
                 else
                     nxt = CHECK;
+                    busy = 1;
                     // use lru bit and assert busy/stall
             end
             CHECK: begin
-                if (input_signal)
-                    nxt = REFILL;
-                else
-                    nxt = START;
-            end
-            REFILL: begin
-                if (input_signal)
-                    nxt = MEMRD;
-                else
-                    nxt = START;
-            end
-            MEMRD: begin
-                if (!input_signal)
-                    nxt = START;
+                if (cache_ready) nxt = COMPARE;
             end
             default: nxt = START;
         endcase

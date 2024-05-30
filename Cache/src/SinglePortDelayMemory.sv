@@ -4,7 +4,7 @@
 // Engineer: Danny Gutierrez
 // 
 // Create Date: 04/05/2024 11:14:42 PM
-// Design Name: 
+// Design Name:
 // Module Name: SinglePortDelayMemory
 // Project Name: 
 // Target Devices: 

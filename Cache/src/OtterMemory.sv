@@ -67,16 +67,47 @@ module OtterMemory (
     
     /* ADD YOUR DESIGN HERE */
 
-    // L1 or L1s
+    logic memValidWire;
+    logic [255:0] claDataOutWire;
+    logic [255:0] claDataInWire;
+    logic [31:0] claMemDataOutWire;
+    logic [31:0] claMemDataInWire;
+    logic miss;
+
+    logic cacheReadyWire;
 
     CacheLineAdapter myCacheLineAdapter (
-        .CLK        ()
+        .CLK        (MEM_CLK),
+        .RST        (MEM_RST),
+        .re         (MEM_RDEN2),
+        .we         (MEM_WE2),
+        .memValid   (memValidWire),
+        .cacheDataIn(claDataInWire),
+        .cacheDataOut(claDataOutWire),
+        .memDataIn  (claMemDataInWire),
+        .memDataOut (claMemDataOutwire)
     );
 
     // Your choice of dual port or single port main memory
 
     CacheController myCacheController (
-        .CLK        ()
+        .CLK        (MEM_CLK),
+        .rden       (MEM_RDEN2),
+        .wen        (MEM_WE2),
+        .cache_ready(cacheReadyWire),
+        .toggle
+
+    );
+
+    Cache myCache (
+        .clk    (MEM_CLK),
+        .we     (MEM_WE2),
+        .re     (MEM_RDEN2),
+        .reset  (MEM_RST),
+        .address(MEM_ADDR2),
+        .dataIn (claDataOutWire),
+        .dataOut(MEM_DOUT2),
+        .miss   (miss)
     );
 
     SinglePortMemory #(
@@ -91,11 +122,5 @@ module OtterMemory (
          .DATA_OUT       (),
          .MEMVALID       ()
      );
-
-    Comparator comp (
-        .tag1(),
-        .tag2(),
-        .result()
-    );
 
 endmodule
