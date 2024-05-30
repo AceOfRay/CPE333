@@ -96,6 +96,6 @@ module OtterMemory (
         .tag1(),
         .tag2(),
         .result()
-    )
+    );
 
 endmodule
