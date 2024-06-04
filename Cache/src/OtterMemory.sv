@@ -94,6 +94,7 @@ module OtterMemory (
         .CLK        (MEM_CLK),
         .rden       (MEM_RDEN2),
         .wen        (MEM_WE2),
+        .reset      (MEM_RST),
         .cache_ready(cacheReadyWire),
         .toggle
 
@@ -110,7 +111,7 @@ module OtterMemory (
         .miss   (miss)
     );
 
-    SinglePortMemory #(
+    SinglePortDelayMemory #(
          .DELAY_CYCLES   (10),
          .BURST_LEN      (4)
      ) mySinglePortMemory (
